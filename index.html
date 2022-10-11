@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HW87</title>
+    <style type="text/css">
+        body {
+            background-color: rgb(150, 150, 202);
+        }
+
+        .exsample {
+            top: 5%;
+        }
+
+        .exsample1 {
+            top: 28%;
+        }
+
+        .exsample2 {
+            top: 16%;
+        }
+
+        .exsample1 {
+            position: relative;
+            left: 27%;
+            top: 90px;
+            width: 25%;
+            height: 200px;
+            padding-top: 5px;
+            padding-left: 10px;
+            padding-bottom: 10px;
+            font-size: x-large;
+            margin-top: 5px;
+            text-align: justify;
+            background: lightgray;
+            border: 1px solid greenyellow;
+            border-radius: 3%;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="myForm" class="exsample1">
+        <label for="name">Cookies name:</label><br>
+        <input type="text" id="name" name="name" value="username"><br>
+
+        <label for="value">Cookies value:</label><br>
+        <input type="text" id="value" name="value" value=""><br>
+
+        <label for="date">Cookies date value:</label><br>
+        <input type="date" id="date" name="date"><br>
+
+        <div>
+            <button id="btn1" onclick="onClicBtn1()">Get Cookie</button>
+            <button id="btn2" onclick="onClicBtn2()">Add Cookie</button>
+            <button id="btn2" onclick="onClicBtn3()">Delete Cookie</button>
+       </div>
+    </div>
+
+    <script>
+
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+        function onClicBtn1() {
+
+            name = document.getElementById('name').value;
+            value = getCookie(name);
+            if (value != undefined) {
+                document.getElementById('value').value  = value; 
+            }
+            else {
+                document.getElementById('value').value  = 'Value is not defined';   
+            }
+        }
+
+        function onClicBtn2() {
+            name = document.getElementById('name').value;
+            value = document.getElementById('value').value;
+
+            let date = new Date(Date.now() + 86400e3);
+            date = date.toUTCString();
+    
+                        date = new Date(document.getElementById('date').value);
+                        date = date.toUTCString();
+                        let strcookie = `${name}=${value}; expires= ${date}`;
+                        document.cookie = strcookie;
+        }
+
+        function onClicBtn3() {
+            name = document.getElementById('name').value;
+            date = new Date('2022-01-01');
+                        date = date.toUTCString();
+                        let strcookie = `${name}=${value}; expires= ${date}`;
+                        document.cookie = strcookie;
+        }
+     
+    </script>
+
+</body>
+
+</html>
